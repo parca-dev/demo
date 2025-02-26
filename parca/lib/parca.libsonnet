@@ -3,7 +3,7 @@ local p = import 'github.com/parca-dev/parca/deploy/lib/parca/parca.libsonnet';
 local defaults = {
   namespace: 'parca',
   // renovate: datasource=docker depName=ghcr.io/parca-dev/parca
-  version: 'v0.22.0',
+  version: 'v0.23.1',
   image: 'ghcr.io/parca-dev/parca:' + self.version,
   replicas: 1,
   ingress: {
