@@ -3,7 +3,7 @@ local pa = import 'github.com/parca-dev/parca-agent/deploy/lib/parca-agent/parca
 local defaults = {
   namespace: 'parca',
   // renovate: datasource=docker depName=ghcr.io/parca-dev/parca-agent
-  version: 'v0.33.1',
+  version: 'v0.36.0',
   image: 'ghcr.io/parca-dev/parca-agent:' + self.version,
   stores: ['parca.%s.svc.cluster.local:7070' % self.namespace],
   insecure: true,
