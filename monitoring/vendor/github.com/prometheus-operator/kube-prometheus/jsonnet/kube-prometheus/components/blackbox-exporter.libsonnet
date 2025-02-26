@@ -6,7 +6,7 @@ local defaults = {
   // If there is no CRD for the component, everything is hidden in defaults.
   namespace:: error 'must provide namespace',
   version:: error 'must provide version',
-  image:: error 'must provide version',
+  image:: error 'must provide image',
   resources:: {
     requests: { cpu: '10m', memory: '20Mi' },
     limits: { cpu: '20m', memory: '40Mi' },
@@ -183,6 +183,7 @@ function(params) {
       } else {
         runAsNonRoot: true,
         runAsUser: 65534,
+        runAsGroup: 65534,
         allowPrivilegeEscalation: false,
         readOnlyRootFilesystem: true,
         capabilities: { drop: ['ALL'] },
@@ -205,6 +206,7 @@ function(params) {
       securityContext: {
         runAsNonRoot: true,
         runAsUser: 65534,
+        runAsGroup: 65534,
         allowPrivilegeEscalation: false,
         readOnlyRootFilesystem: true,
         capabilities: { drop: ['ALL'] },

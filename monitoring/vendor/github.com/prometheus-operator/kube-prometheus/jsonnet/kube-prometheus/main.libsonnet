@@ -47,7 +47,7 @@ local utils = import './lib/utils.libsonnet';
         prometheusOperator: 'quay.io/prometheus-operator/prometheus-operator:v' + $.values.common.versions.prometheusOperator,
         prometheusOperatorReloader: 'quay.io/prometheus-operator/prometheus-config-reloader:v' + $.values.common.versions.prometheusOperator,
         kubeRbacProxy: 'quay.io/brancz/kube-rbac-proxy:v' + $.values.common.versions.kubeRbacProxy,
-        configmapReload: 'jimmidyson/configmap-reload:v' + $.values.common.versions.configmapReload,
+        configmapReload: 'ghcr.io/jimmidyson/configmap-reload:v' + $.values.common.versions.configmapReload,
       },
     },
     alertmanager: {
@@ -150,6 +150,10 @@ local utils = import './lib/utils.libsonnet';
       kind: 'Namespace',
       metadata: {
         name: $.values.common.namespace,
+        labels: {
+          'pod-security.kubernetes.io/warn': 'privileged',
+          'pod-security.kubernetes.io/warn-version': 'latest',
+        },
       },
     },
   },

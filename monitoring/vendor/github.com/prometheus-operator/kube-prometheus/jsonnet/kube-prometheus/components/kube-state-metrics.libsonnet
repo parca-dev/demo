@@ -7,7 +7,7 @@ local defaults = {
   name:: 'kube-state-metrics',
   namespace:: error 'must provide namespace',
   version:: error 'must provide version',
-  image:: error 'must provide version',
+  image:: error 'must provide image',
   kubeRbacProxyImage:: error 'must provide kubeRbacProxyImage',
   resources:: {
     requests: { cpu: '10m', memory: '190Mi' },
@@ -164,6 +164,9 @@ function(params) (import 'github.com/kubernetes/kube-state-metrics/jsonnet/kube-
             ports:: null,
             livenessProbe:: null,
             readinessProbe:: null,
+            securityContext+: {
+              runAsGroup: 65534,
+            },
             args: ['--host=127.0.0.1', '--port=8081', '--telemetry-host=127.0.0.1', '--telemetry-port=8082'],
             resources: ksm._config.resources,
           }, super.containers) + [kubeRbacProxyMain, kubeRbacProxySelf],

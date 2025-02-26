@@ -37,7 +37,7 @@
     _config:: defaults + params,
 
     crd: (
-      import 'github.com/pyrra-dev/pyrra/config/crd/bases/pyrra.dev_servicelevelobjectives.json'
+      import 'github.com/pyrra-dev/pyrra/jsonnet/controller-gen/pyrra.dev_servicelevelobjectives.json'
     ),
 
 
@@ -80,6 +80,9 @@
         securityContext: {
           allowPrivilegeEscalation: false,
           readOnlyRootFilesystem: true,
+          runAsNonRoot: true,
+          capabilities: { drop: ['ALL'] },
+          seccompProfile: { type: 'RuntimeDefault' },
         },
       };
 
