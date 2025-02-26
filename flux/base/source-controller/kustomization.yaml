@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- github.com/fluxcd/source-controller/config/default?ref=a80a99b359f964d92c70f119195be34ca8438f89 # v1.3.0
+- github.com/fluxcd/source-controller/config/default?ref=301fc7271458e79a2331fc70c2ba5dc97c13d39c # v1.5.0
 - serviceaccount.yaml
 - networkpolicy.yaml
 
