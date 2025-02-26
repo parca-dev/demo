@@ -175,7 +175,10 @@ function(params) {
              ] +
              (
                if p._config.thanos != null then
-                 [{ name: 'grpc', port: 10901, targetPort: 10901 }]
+                 [
+                   { name: 'grpc', port: 10901, targetPort: 10901 },
+                   { name: 'http', port: 10902, targetPort: 10902 },
+                 ]
                else []
              ),
       selector: p._config.selectorLabels,
@@ -220,7 +223,7 @@ function(params) {
         verbs: ['get'],
       },
       {
-        nonResourceURLs: ['/metrics'],
+        nonResourceURLs: ['/metrics', '/metrics/slis'],
         verbs: ['get'],
       },
     ],
@@ -340,6 +343,8 @@ function(params) {
       probeNamespaceSelector: {},
       ruleNamespaceSelector: {},
       ruleSelector: p._config.ruleSelector,
+      scrapeConfigSelector: {},
+      scrapeConfigNamespaceSelector: {},
       serviceMonitorSelector: {},
       serviceMonitorNamespaceSelector: {},
       nodeSelector: { 'kubernetes.io/os': 'linux' },
